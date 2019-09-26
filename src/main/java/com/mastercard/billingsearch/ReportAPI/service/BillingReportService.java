@@ -15,6 +15,8 @@ import java.util.Optional;
 public class BillingReportService {
 @Autowired
     BillingReportRepository billingReportRepository;
+//@Autowired
+//  OfflineRequests offlineRequests;
 
 public OfflineGetResponse getRequestReportServiceById(Integer requestId){
     OfflineGetResponse offlineGetResponse=new OfflineGetResponse();
@@ -30,14 +32,26 @@ public OfflineRequests postRequestReportService(OfflinePostRequest offlinePostRe
      offlineRequests.setSearchCriteria(offlinePostRequest.getSearchCriteria());
      offlineRequests.setFeederType(offlinePostRequest.getFeederType());
      offlineRequests.setReportType(offlinePostRequest.getReportType());
-     offlineRequests.setUserId("SN20098787");//need to fetch it from SAML token
+     offlineRequests.setUserId("UP20089850");//need to fetch it from SAML token
      offlineRequests.setPath("http://www.google.com");//temp
      offlineRequests.setStatus("INITIATED");//temp
-    offlineRequests.setIsDeleted("Y");//temp
+    offlineRequests.setIsDeleted("N");//temp
      offlineRequests.setCreatedTimestamp(getDate());
     billingReportRepository.save(offlineRequests);
      return  offlineRequests;
 }
+    public void deleteRequestReportServiceById(Integer requestId) {
+       billingReportRepository.deleteById(requestId);
+    }
+
+    public void updateRequestReportServiceById(OfflinePostRequest offlinePostRequest,Integer requestId) {
+     OfflineRequests offlinePostRequest1 = billingReportRepository.findById(requestId).get();
+     offlinePostRequest1.setSearchCriteria(offlinePostRequest.getSearchCriteria());
+     offlinePostRequest1.setFeederType(offlinePostRequest.getFeederType());
+     offlinePostRequest1.setReportType(offlinePostRequest.getReportType());
+    billingReportRepository.save(offlinePostRequest1);
+    }
+
 
     public String getDate() {
 
@@ -52,4 +66,7 @@ public OfflineRequests postRequestReportService(OfflinePostRequest offlinePostRe
         return formatedDateTime;
 
     }
+
+
+
 }

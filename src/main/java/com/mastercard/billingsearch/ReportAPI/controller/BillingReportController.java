@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping(path = "/billing/requests")
 public class BillingReportController {
@@ -30,5 +28,17 @@ public class BillingReportController {
     @GetMapping("/{requestId}")
     public OfflineGetResponse getRequestReportDetailsById(@PathVariable Integer  requestId){
       return billingReportService.getRequestReportServiceById(requestId);
+    }
+
+    @DeleteMapping("/{requestId}")
+    public ResponseEntity<String> deleteRequestReportById(@PathVariable Integer requestId){
+        billingReportService.deleteRequestReportServiceById(requestId);
+        return  ResponseEntity.ok("Successfully deleted the offline request");
+    }
+
+    @PutMapping("/{requestId}")
+        public ResponseEntity<String> updateRequestReportById(@RequestBody OfflinePostRequest offlinePostRequest,@PathVariable Integer requestId){
+        billingReportService.updateRequestReportServiceById(offlinePostRequest,requestId);
+        return  ResponseEntity.ok("Successfully updated the offline request");
     }
 }

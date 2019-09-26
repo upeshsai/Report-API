@@ -10,7 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OfflinePostResponse {
-
     String message;
     Integer requestId;
 }

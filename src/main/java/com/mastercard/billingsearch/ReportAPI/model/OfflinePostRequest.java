@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OfflinePostRequest {
-
     String searchCriteria;
     String feederType;
     String reportType;
