@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Getter
@@ -14,7 +15,5 @@ import org.springframework.stereotype.Service;
 public class OfflinePostRequest {
     String searchCriteria;
     String feederType;
-    String reportType;
-
 
 }
